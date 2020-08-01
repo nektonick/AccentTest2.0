@@ -15,7 +15,6 @@ public:
     void deleteAllButtons();
     int size();
     QPushButton& operator [] (int index);
-
 };
 
 #endif // BUTTONSWITHLETTER_H

@@ -5,6 +5,7 @@
 #include <WordsVector.h>
 #include <ButtonsWithLetter.h>
 #include <QDebug>
+#include <QSignalMapper>
 
 namespace Ui {
     class AccentTest;
@@ -25,6 +26,10 @@ private:
     WordsVector wordsVector;
     WordWithAccentAndStatistic word;
     ButtonsWithLetter buttons;
+    bool isVowel (QString s);
+private slots:
+    void rightVowelClick();
+    void wrongVowelClick();
 };
 
 #endif // ACCENTTEST_H

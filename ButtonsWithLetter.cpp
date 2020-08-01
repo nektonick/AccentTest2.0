@@ -13,7 +13,8 @@ ButtonsWithLetter::~ButtonsWithLetter()
 void ButtonsWithLetter::generateButtonsFor(WordWithAccentAndStatistic word)
 {
     for (int i=0; i<word.getWordSize(); ++i){
-        QPushButton *b = new QPushButton(word.getNCharInWordInQstringFormat(i));
+        QPushButton *b = new QPushButton();
+        b->setText(word.getNCharInWordInQstringFormat(i));
         buttonsWithLetter.push_back(b);
     }
 }
@@ -21,13 +22,9 @@ void ButtonsWithLetter::generateButtonsFor(WordWithAccentAndStatistic word)
 void ButtonsWithLetter::deleteAllButtons()
 {
     for (int i=0; i<buttonsWithLetter.size(); ++i){
-        delete &buttonsWithLetter[i];
+        delete buttonsWithLetter[i];
     }
-
-    //debug test
-    for (int i=0; i<buttonsWithLetter.size(); ++i){
-        qDebug() << &buttonsWithLetter[i]<<endl;
-    }
+    buttonsWithLetter.clear();
 }
 
 int ButtonsWithLetter::size()
