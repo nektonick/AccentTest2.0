@@ -40,6 +40,7 @@ QString ButtonsWithLetter::wordWithRightAccent(WordWithAccentAndStatistic word)
     i--; //сдвиг влево, так как буквы в слове с нуля, а глассные с единицы
     QString ans = word.getText();
     ans[i]=makeLetterBig(ans[i]);
+    ans.insert(i+1, " ́"); //символ ударения
     return ans;
 }
 
@@ -63,8 +64,8 @@ QPushButton &ButtonsWithLetter::operator [](int index)
 
 QChar ButtonsWithLetter::makeLetterBig(QCharRef c)
 {
-    QString lower = "аеёиоуыэюя";
-    QString upper = "АЕЁИОУЫЭЮЯ";
+    QString lower = "аеиоуыэюя";
+    QString upper = "АЕИОУЫЭЮЯ";
     return upper[lower.indexOf(c)];
 }
 

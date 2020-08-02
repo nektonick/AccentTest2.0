@@ -34,6 +34,7 @@ void AccentTest::wrongAnswerTextAdd()
 {
     QString s = word.getText();
     s[userAnswer.toInt()] = ButtonsWithLetter::makeLetterBig(s[userAnswer.toInt()]);
+    s.insert(userAnswer.toInt()+1, " ́"); //символ ударения
     wrongAnswerLabel.setText("<s> "+ s + "</s");
     setRedLableStyleSheet(wrongAnswerLabel);
     ui->wrongAnswerTextLayout->addWidget(&wrongAnswerLabel);
