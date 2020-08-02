@@ -10,14 +10,14 @@ public:
     int getRightAccent();
     bool isInputAccentRight(int inputAccent);
     int id;
-    QString word;
+    QString getText();
     int accentLetterNumber;
     int rightAnswersInARow = 0;
     int getWordSize();
     QString getNCharInWordInQstringFormat(int n);
 
 private:
-
+    QString word;
 };
 
 #endif // WORDWITHACCENTANDSTATISTIC_H

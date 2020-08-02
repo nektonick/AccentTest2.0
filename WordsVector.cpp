@@ -56,8 +56,6 @@ void WordsVector::createDefaultWordsFileIfItNotExist()
         outStream<< QString::fromUtf8("0 апостроф 3 0")<<endl;
         wordsFile.close();
     }
-
-
 }
 
 void WordsVector::saveWords()
@@ -69,7 +67,7 @@ void WordsVector::saveWords()
     if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
         QTextStream outStream(&wordsFile);
         for (auto w : words){
-            outStream<<w.id<<" "<<w.word<<" "<<w.accentLetterNumber<<" "<<w.rightAnswersInARow<<endl;
+            outStream<<w.id<<" "<<w.getText()<<" "<<w.accentLetterNumber<<" "<<w.rightAnswersInARow<<endl;
         }
         wordsFile.close();
     }

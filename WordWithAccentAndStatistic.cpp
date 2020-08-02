@@ -23,6 +23,11 @@ bool WordWithAccentAndStatistic::isInputAccentRight(int inputAccent)
     return (inputAccent == this->getRightAccent());
 }
 
+QString WordWithAccentAndStatistic::getText()
+{
+    return word;
+}
+
 int WordWithAccentAndStatistic::getWordSize()
 {
     return word.size();
