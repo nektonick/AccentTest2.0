@@ -16,6 +16,11 @@ void ButtonsWithLetter::generateButtonsFor(WordWithAccentAndStatistic word)
         QPushButton *b = new QPushButton();
         b->setObjectName(QString::number(i));
         b->setText(word.getNCharInWordInQstringFormat(i));
+        b->setStyleSheet(
+                    "font-size: 36px;"
+                    "font-weight: normal;"
+                    "margin: 0px; padding: 5px;"
+                    );
         buttonsWithLetter.push_back(b);
     }
 }

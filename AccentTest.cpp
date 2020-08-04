@@ -30,6 +30,7 @@ void AccentTest::showRandomWord(){
         }
     }
 }
+
 void AccentTest::wrongAnswerTextAdd()
 {
     QString s = word.getText();
