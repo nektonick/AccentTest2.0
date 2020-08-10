@@ -19,6 +19,7 @@ SOURCES += \
     AccentTest.cpp \
     ButtonsWithLetter.cpp \
     WordWithAccentAndStatistic.cpp \
+    WordsTable.cpp \
     WordsVector.cpp \
     main.cpp \
     MainMenu.cpp
@@ -28,11 +29,13 @@ HEADERS += \
     ButtonsWithLetter.h \
     MainMenu.h \
     WordWithAccentAndStatistic.h \
+    WordsTable.h \
     WordsVector.h
 
 FORMS += \
     AccentTest.ui \
-    MainMenu.ui
+    MainMenu.ui \
+    WordsTable.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

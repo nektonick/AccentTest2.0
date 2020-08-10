@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <AccentTest.h>
+#include <WordsTable.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainMenu; }
@@ -19,6 +20,8 @@ private:
 
 private slots:
     void on_StartButton_clicked();
+
+    void on_ShowAllWorldsButton_clicked();
 
 private:
     Ui::MainMenu *ui;
