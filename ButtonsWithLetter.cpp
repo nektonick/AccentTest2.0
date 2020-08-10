@@ -19,7 +19,7 @@ void ButtonsWithLetter::generateButtonsFor(WordWithAccentAndStatistic word)
         b->setStyleSheet(
                     "font-size: 36px;"
                     "font-weight: normal;"
-                    "margin: 0px; padding: 5px;"
+                    "margin: 0.5px; padding: 5px;"
                     );
         buttonsWithLetter.push_back(b);
     }

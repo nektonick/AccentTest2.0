@@ -4,6 +4,7 @@
 
 AccentTest::AccentTest(QWidget *parent) : QWidget(parent), ui(new Ui::AccentTest){
     ui->setupUi(this);
+    ui->buttonsLayout->setSpacing(0);
     wordsVector.getWordsByReadingFromFileOrCreatingDefaultFile();
     this->showRandomWord();
 }
