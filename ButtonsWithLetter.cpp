@@ -28,26 +28,12 @@ void ButtonsWithLetter::generateButtonsFor(WordWithAccentAndStatistic word)
 void ButtonsWithLetter::generateAnswer(WordWithAccentAndStatistic word)
 {
     QPushButton *b = new QPushButton();
-    QString text = wordWithRightAccent(word);
+    QString text = WordWithAccentAndStatistic::getWordWithRightAccent(word);
     b->setText(text);
     buttonsWithLetter.push_back(b);
 }
 
-QString ButtonsWithLetter::wordWithRightAccent(WordWithAccentAndStatistic word)
-{
-    int vowel=0;
-    int i=0;
-    while (vowel != word.accentLetterNumber) {
-        if(isVowel(word.getText()[i]))
-            vowel++;
-        i++;
-    }
-    i--; //сдвиг влево, так как буквы в слове с нуля, а глассные с единицы
-    QString ans = word.getText();
-    ans[i]=makeLetterBig(ans[i]);
-    ans.insert(i+1, " ́"); //символ ударения
-    return ans;
-}
+
 
 void ButtonsWithLetter::deleteAllButtons()
 {
@@ -67,17 +53,6 @@ QPushButton &ButtonsWithLetter::operator [](int index)
     return *buttonsWithLetter[index];
 }
 
-QChar ButtonsWithLetter::makeLetterBig(QCharRef c)
-{
-    QString lower = "аеиоуыэюя";
-    QString upper = "АЕИОУЫЭЮЯ";
-    return upper[lower.indexOf(c)];
-}
 
-bool ButtonsWithLetter::isVowel(QCharRef s)
-{
-    QString vowels ="аеёиоуыэюя";
-    return vowels.contains(s);
-}
 
 

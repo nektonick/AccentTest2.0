@@ -39,3 +39,32 @@ QString WordWithAccentAndStatistic::getNCharInWordInQstringFormat(int n)
     s += word[n];
     return (s);
 }
+
+QString WordWithAccentAndStatistic::getWordWithRightAccent(WordWithAccentAndStatistic word)
+{
+    int vowel=0;
+    int i=0;
+    while (vowel != word.accentLetterNumber) {
+        if(isVowel(word.getText()[i]))
+            vowel++;
+        i++;
+    }
+    i--; //сдвиг влево, так как буквы в слове с нуля, а глассные с единицы
+    QString ans = word.getText();
+    ans[i]=makeLetterBig(ans[i]);
+    ans.insert(i+1, " ́"); //символ ударения
+    return ans;
+}
+
+QChar WordWithAccentAndStatistic::makeLetterBig(QCharRef c)
+{
+    QString lower = "аеиоуыэюя";
+    QString upper = "АЕИОУЫЭЮЯ";
+    return upper[lower.indexOf(c)];
+}
+
+bool WordWithAccentAndStatistic::isVowel(QCharRef s)
+{
+    QString vowels ="аеёиоуыэюя";
+    return vowels.contains(s);
+}

@@ -16,6 +16,10 @@ public:
     int getWordSize();
     QString getNCharInWordInQstringFormat(int n);
 
+    static QChar makeLetterBig(QCharRef c);
+    static bool isVowel(QCharRef s);
+    static QString getWordWithRightAccent(WordWithAccentAndStatistic word);
+
 private:
     QString word;
 };

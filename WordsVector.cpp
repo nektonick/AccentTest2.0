@@ -73,6 +73,16 @@ void WordsVector::saveWords()
     }
 }
 
+void WordsVector::addNewWord()
+{
+
+}
+
+int WordsVector::size()
+{
+    return words.size();
+}
+
 WordWithAccentAndStatistic WordsVector::getGoodRandomWord()
 {
     WordWithAccentAndStatistic w = words[rand()%(words.size())];

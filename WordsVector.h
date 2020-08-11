@@ -14,10 +14,12 @@ public:
     void getWordsByReadingFromFileOrCreatingDefaultFile();
     void saveWords();
     void addNewWord();
+    int size();
     WordWithAccentAndStatistic getGoodRandomWord();
     WordWithAccentAndStatistic& operator [] (int index);
-private:
     std::vector<WordWithAccentAndStatistic> words;
+private:
+
     QFile wordsFile;
     QString fileName = "words_and_accents";
     void readWordsFromFile();

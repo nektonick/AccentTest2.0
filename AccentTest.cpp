@@ -20,7 +20,7 @@ void AccentTest::showRandomWord(){
     int vowels = 0;
     for (int i=0; i<buttons.size(); ++i){
         ui->buttonsLayout->addWidget(&buttons[i]);
-        if (ButtonsWithLetter::isVowel(buttons[i].text()[0])){
+        if (WordWithAccentAndStatistic::isVowel(buttons[i].text()[0])){
             vowels++;
             if (vowels == word.accentLetterNumber){
                 connect(&buttons[i], SIGNAL(clicked()), this, SLOT(rightVowelClick()));
@@ -35,7 +35,7 @@ void AccentTest::showRandomWord(){
 void AccentTest::wrongAnswerTextAdd()
 {
     QString s = word.getText();
-    s[userAnswer.toInt()] = ButtonsWithLetter::makeLetterBig(s[userAnswer.toInt()]);
+    s[userAnswer.toInt()] = WordWithAccentAndStatistic::makeLetterBig(s[userAnswer.toInt()]);
     s.insert(userAnswer.toInt()+1, " ́"); //символ ударения
     wrongAnswerLabel.setText("<s> "+ s + "</s");
     setRedLableStyleSheet(wrongAnswerLabel);
