@@ -20,8 +20,11 @@ private:
 
 private slots:
     void on_StartButton_clicked();
-
     void on_ShowAllWorldsButton_clicked();
+
+    void on_ExitButton_clicked();
+
+    void on_optionsButton_clicked();
 
 private:
     Ui::MainMenu *ui;

@@ -13,6 +13,8 @@ public:
     WordsVector wordsVector;
     int size();
     QCheckBox& operator [] (int index);
+    int getLastWordId();
+    void clear();
 private:
 };
 

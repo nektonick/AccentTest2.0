@@ -2,6 +2,7 @@
 #define ADDNEWWORDDIALOG_H
 
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class AddNewWordDialog;
@@ -14,6 +15,10 @@ class AddNewWordDialog : public QDialog
 public:
     explicit AddNewWordDialog(QWidget *parent = nullptr);
     ~AddNewWordDialog();
+    QString inputText;
+    int inputAccent;
+private slots:
+    void on_buttonBox_accepted();
 
 private:
     Ui::AddNewWordDialog *ui;

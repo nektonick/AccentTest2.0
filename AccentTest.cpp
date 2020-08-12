@@ -2,8 +2,11 @@
 #include "ui_AccentTest.h"
 
 
-AccentTest::AccentTest(QWidget *parent) : QWidget(parent), ui(new Ui::AccentTest){
+AccentTest::AccentTest(QWidget *parent) {
+    ui = new Ui::AccentTest;
     ui->setupUi(this);
+    mainWidget = parent;
+    //mainWidget = myParent;
     ui->buttonsLayout->setSpacing(0);
     wordsVector.getWordsByReadingFromFileOrCreatingDefaultFile();
     this->showRandomWord();
@@ -15,14 +18,15 @@ AccentTest::~AccentTest(){
 }
 
 void AccentTest::showRandomWord(){
-    word = wordsVector.getGoodRandomWord();
+    wordNum =wordsVector.getGoodRandomWordNum();
+    word = wordsVector[wordNum];
     buttons.generateButtonsFor(word);
     int vowels = 0;
     for (int i=0; i<buttons.size(); ++i){
         ui->buttonsLayout->addWidget(&buttons[i]);
         if (WordWithAccentAndStatistic::isVowel(buttons[i].text()[0])){
             vowels++;
-            if (vowels == word.accentLetterNumber){
+            if (vowels == word.getRightAccent()){
                 connect(&buttons[i], SIGNAL(clicked()), this, SLOT(rightVowelClick()));
             }
             else{
@@ -30,6 +34,11 @@ void AccentTest::showRandomWord(){
             }
         }
     }
+}
+
+void AccentTest::saveWordsStatistic()
+{
+    wordsVector.saveWords();
 }
 
 void AccentTest::wrongAnswerTextAdd()
@@ -66,6 +75,8 @@ void AccentTest::setRedLableStyleSheet(QLabel &l)
 
 void AccentTest::rightVowelClick()
 {
+    wordsVector[wordNum].setNumOfRightAnswers(word.getNumOfRightAnswers()+1);
+    saveWordsStatistic();
     buttons.deleteAllButtons();
     buttons.generateAnswer(word);
     //кнопка только одна, имеет индекс [0]
@@ -76,8 +87,9 @@ void AccentTest::rightVowelClick()
 
 void AccentTest::wrongVowelClick()
 {
+    wordsVector[wordNum].setNumOfRightAnswers(0);
+    saveWordsStatistic();
     userAnswer=this->sender()->objectName();
-
     buttons.deleteAllButtons();
     buttons.generateAnswer(word);
     wrongAnswerTextAdd();
@@ -94,4 +106,10 @@ void AccentTest::nextWordClick()
         wrongAnswerLabel.hide();
     }
     this->showRandomWord();
+}
+
+void AccentTest::on_returnButton_clicked()
+{
+    mainWidget->show();
+    this->close();
 }

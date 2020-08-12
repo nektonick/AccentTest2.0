@@ -17,18 +17,15 @@
    <bool>false</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="1">
-    <layout class="QVBoxLayout" name="wrongAnswerTextLayout"/>
-   </item>
-   <item row="0" column="1">
-    <spacer name="verticalSpacer">
+   <item row="2" column="0">
+    <spacer name="horizontalSpacer_2">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>20</width>
-       <height>121</height>
+       <width>171</width>
+       <height>20</height>
       </size>
      </property>
     </spacer>
@@ -46,18 +43,15 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="1">
-    <layout class="QHBoxLayout" name="buttonsLayout"/>
-   </item>
-   <item row="2" column="0">
-    <spacer name="horizontalSpacer_2">
+   <item row="0" column="1">
+    <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>171</width>
-       <height>20</height>
+       <width>20</width>
+       <height>121</height>
       </size>
      </property>
     </spacer>
@@ -74,6 +68,19 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item row="2" column="1">
+    <layout class="QHBoxLayout" name="buttonsLayout"/>
+   </item>
+   <item row="1" column="1">
+    <layout class="QVBoxLayout" name="wrongAnswerTextLayout"/>
+   </item>
+   <item row="4" column="1">
+    <widget class="QPushButton" name="returnButton">
+     <property name="text">
+      <string>Назад</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

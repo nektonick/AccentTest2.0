@@ -18,6 +18,11 @@ int WordWithAccentAndStatistic::getRightAccent()
     return this->accentLetterNumber;
 }
 
+int WordWithAccentAndStatistic::getNumOfRightAnswers()
+{
+    return  rightAnswersInARow;
+}
+
 bool WordWithAccentAndStatistic::isInputAccentRight(int inputAccent)
 {
     return (inputAccent == this->getRightAccent());
@@ -26,6 +31,11 @@ bool WordWithAccentAndStatistic::isInputAccentRight(int inputAccent)
 QString WordWithAccentAndStatistic::getText()
 {
     return word;
+}
+
+int WordWithAccentAndStatistic::getId()
+{
+    return id;
 }
 
 int WordWithAccentAndStatistic::getWordSize()
@@ -54,6 +64,26 @@ QString WordWithAccentAndStatistic::getWordWithRightAccent(WordWithAccentAndStat
     ans[i]=makeLetterBig(ans[i]);
     ans.insert(i+1, " ́"); //символ ударения
     return ans;
+}
+
+void WordWithAccentAndStatistic::setText(QString text)
+{
+    word = text;
+}
+
+void WordWithAccentAndStatistic::setAccent(int inputAccent)
+{
+    accentLetterNumber = inputAccent;
+}
+
+void WordWithAccentAndStatistic::setId(int inputId)
+{
+    id = inputId;
+}
+
+void WordWithAccentAndStatistic::setNumOfRightAnswers(int numOfRightAnswers)
+{
+    rightAnswersInARow = numOfRightAnswers;
 }
 
 QChar WordWithAccentAndStatistic::makeLetterBig(QCharRef c)

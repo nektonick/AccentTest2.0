@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddNewWordDialog</class>
- <widget class="QDialog" name="AddNewWordDialog">
+ <class>DeleteWordsWarning</class>
+ <widget class="QDialog" name="DeleteWordsWarning">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>467</width>
-    <height>242</height>
+    <width>315</width>
+    <height>165</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,34 +15,30 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLineEdit" name="wordLineEdit">
+    <widget class="QLabel" name="label">
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
-     <property name="placeholderText">
-      <string>слово маленькими буквами (апостроф)</string>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLineEdit" name="accentLineEdit">
+    <widget class="QDialogButtonBox" name="buttonBox">
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
-     <property name="readOnly">
-      <bool>false</bool>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
      </property>
-     <property name="placeholderText">
-      <string>номер ударной гласной (1-99)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -61,7 +57,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>AddNewWordDialog</receiver>
+   <receiver>DeleteWordsWarning</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -77,7 +73,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>AddNewWordDialog</receiver>
+   <receiver>DeleteWordsWarning</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

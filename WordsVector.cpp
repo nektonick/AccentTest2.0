@@ -67,15 +67,10 @@ void WordsVector::saveWords()
     if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
         QTextStream outStream(&wordsFile);
         for (auto w : words){
-            outStream<<w.id<<" "<<w.getText()<<" "<<w.accentLetterNumber<<" "<<w.rightAnswersInARow<<endl;
+            outStream<<w.getId()<<" "<<w.getText()<<" "<<w.getRightAccent()<<" "<<w.getNumOfRightAnswers()<<endl;
         }
         wordsFile.close();
     }
-}
-
-void WordsVector::addNewWord()
-{
-
 }
 
 int WordsVector::size()
@@ -83,13 +78,13 @@ int WordsVector::size()
     return words.size();
 }
 
-WordWithAccentAndStatistic WordsVector::getGoodRandomWord()
+int WordsVector::getGoodRandomWordNum()
 {
-    WordWithAccentAndStatistic w = words[rand()%(words.size())];
-    while (w.rightAnswersInARow>=4){
-        w = words[rand()%words.size()];
+   int id = rand()%(words.size());
+    while (words[id].getNumOfRightAnswers()>=4){
+        id = rand()%words.size();
     }
-    return w;
+    return id;
 }
 
 WordWithAccentAndStatistic &WordsVector::operator [](int index)

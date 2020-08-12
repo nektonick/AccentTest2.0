@@ -12,3 +12,9 @@ AddNewWordDialog::~AddNewWordDialog()
 {
     delete ui;
 }
+
+void AddNewWordDialog::on_buttonBox_accepted()
+{
+    inputText = ui->wordLineEdit->text();
+    inputAccent = ui->accentLineEdit->text().toInt();
+}

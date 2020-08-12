@@ -7,13 +7,19 @@ class WordWithAccentAndStatistic
 public:
     WordWithAccentAndStatistic();
     WordWithAccentAndStatistic(int id, QString word, int accentLetterNumber, int rightAnswersInARow);
-    int getRightAccent();
-    bool isInputAccentRight(int inputAccent);
-    int id;
+
     QString getText();
-    int accentLetterNumber;
-    int rightAnswersInARow = 0;
+    int getId();
+    int getRightAccent();
+    int getNumOfRightAnswers();
+
+    void setText(QString text);
+    void setAccent(int inputAccent);
+    void setId(int inputId);
+    void setNumOfRightAnswers(int numOfRightAnswers);
+
     int getWordSize();
+    bool isInputAccentRight(int inputAccent);
     QString getNCharInWordInQstringFormat(int n);
 
     static QChar makeLetterBig(QCharRef c);
@@ -22,6 +28,9 @@ public:
 
 private:
     QString word;
+    int id;
+    int accentLetterNumber;
+    int rightAnswersInARow = 0;
 };
 
 #endif // WORDWITHACCENTANDSTATISTIC_H

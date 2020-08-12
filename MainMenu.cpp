@@ -26,6 +26,11 @@ MainMenu::MainMenu(QWidget *parent)
                 "font-weight: normal;"
                 "margin: 0.5px; padding: 0px;"
                 );
+    ui->optionsButton->setStyleSheet(
+                "font-size: 28px;"
+                "font-weight: normal;"
+                "margin: 0.5px; padding: 0px;"
+                );
     ui->ExitButton->setStyleSheet(
                 "font-size: 28px;"
                 "font-weight: normal;"
@@ -41,14 +46,25 @@ MainMenu::~MainMenu()
 
 void MainMenu::on_StartButton_clicked()
 {
-    AccentTest *test= new AccentTest;
+    //костыль с передачей ссылки на виджет, чтобы потом сделать MainWindow.show();
+    AccentTest *test= new AccentTest(this);
     test->show();
     hide();
 }
 
 void MainMenu::on_ShowAllWorldsButton_clicked()
 {
-    WordsTable *wordsTable= new WordsTable;
+    WordsTable *wordsTable= new WordsTable(this);
     wordsTable->show();
     hide();
+}
+
+void MainMenu::on_ExitButton_clicked()
+{
+    close();
+}
+
+void MainMenu::on_optionsButton_clicked()
+{
+
 }
