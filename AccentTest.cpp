@@ -19,18 +19,23 @@ AccentTest::~AccentTest(){
 
 void AccentTest::showRandomWord(){
     wordNum =wordsVector.getGoodRandomWordNum();
-    word = wordsVector[wordNum];
-    buttons.generateButtonsFor(word);
-    int vowels = 0;
-    for (int i=0; i<buttons.size(); ++i){
-        ui->buttonsLayout->addWidget(&buttons[i]);
-        if (WordWithAccentAndStatistic::isVowel(buttons[i].text()[0])){
-            vowels++;
-            if (vowels == word.getRightAccent()){
-                connect(&buttons[i], SIGNAL(clicked()), this, SLOT(rightVowelClick()));
-            }
-            else{
-                connect(&buttons[i], SIGNAL(clicked()), this, SLOT(wrongVowelClick()));
+    if (wordNum == -1){
+        allWordsAreLearned();
+    }
+    else{
+        word = wordsVector[wordNum];
+        buttons.generateButtonsFor(word);
+        int vowels = 0;
+        for (int i=0; i<buttons.size(); ++i){
+            ui->buttonsLayout->addWidget(&buttons[i]);
+            if (WordWithAccentAndStatistic::isVowel(buttons[i].text()[0])){
+                vowels++;
+                if (vowels == word.getRightAccent()){
+                    connect(&buttons[i], SIGNAL(clicked()), this, SLOT(rightVowelClick()));
+                }
+                else{
+                    connect(&buttons[i], SIGNAL(clicked()), this, SLOT(wrongVowelClick()));
+                }
             }
         }
     }
@@ -71,6 +76,14 @@ void AccentTest::setRedLableStyleSheet(QLabel &l)
                 "padding: 1px;"
                 "margin:0px; border:0px"
                 );
+}
+
+void AccentTest::allWordsAreLearned()
+{
+    QLabel *label = new QLabel();
+    label->setText("Все слова выучены. Добавьте новые или удалите статистику.");
+    label->setStyleSheet("font-size: 18px;");
+    ui->buttonsLayout->addWidget(label);
 }
 
 void AccentTest::rightVowelClick()

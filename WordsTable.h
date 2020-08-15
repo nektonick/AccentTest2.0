@@ -6,7 +6,9 @@
 #include <WordsVector.h>
 #include <CheckBoxesWithWords.h>
 #include <AddNewWordDialog.h>
+#include <AddNewWordDialogAlternative.h>
 #include <DeleteWordsWarning.h>
+#include <AppSettings.h>
 
 namespace Ui {
 class WordsTable;
@@ -32,9 +34,12 @@ private:
     void showWords();
     WordWithAccentAndStatistic newWord;
     QWidget *mainWidget;
+    AppSettings appSettings;
     void addNewWord();
     void wordsUpdate();
     void saveWords();
+    void showRegularAddWordDialog();
+    void showAlternativeAddWordDialog();
     int showWarningAndReturnExecCode(int howManyWordsWillBeDelete);
 };
 

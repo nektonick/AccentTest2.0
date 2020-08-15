@@ -51,7 +51,7 @@ void WordsVector::createDefaultWordsFileIfItNotExist()
         qDebug()<<"file is already open"<<endl;
         wordsFile.close();
     }
-    if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append) && wordsFile.pos() == 0){
+    if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
         QTextStream outStream(&wordsFile);
         outStream<< QString::fromUtf8("0 апостроф 3 0")<<endl;
         wordsFile.close();
@@ -80,9 +80,19 @@ int WordsVector::size()
 
 int WordsVector::getGoodRandomWordNum()
 {
-   int id = rand()%(words.size());
-    while (words[id].getNumOfRightAnswers()>=4){
+    int id = rand()%(words.size());
+    int numOfTry=0;
+    while (words[id].getNumOfRightAnswers()>= appSettings.getRightAnswersInARow() && numOfTry < words.size()*5){
         id = rand()%words.size();
+        ++numOfTry;
+    }
+    if(numOfTry >= words.size()*5){
+        for (int i=0; i<words.size(); ++i){
+            if (words[i].getNumOfRightAnswers() < appSettings.getRightAnswersInARow()){
+                return words[i].getId();
+            }
+        }
+        id = -1;
     }
     return id;
 }

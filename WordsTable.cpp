@@ -25,15 +25,13 @@ void WordsTable::showWords()
 
 void WordsTable::on_addNewWordButton_clicked()
 {
-    AddNewWordDialog *dialog= new AddNewWordDialog;
-    dialog->show();
-    if (dialog->exec() == 1){
-        newWord.setText(dialog->inputText);
-        newWord.setAccent(dialog->inputAccent);
-        newWord.setId(checkBoxesWithWords.getLastWordId()+1);
-        newWord.setNumOfRightAnswers(0);
-        addNewWord();
+    if (appSettings.getWordsInputType() == 0){
+        showRegularAddWordDialog();
     }
+    else
+        if(appSettings.getWordsInputType() == 1){
+            showAlternativeAddWordDialog();
+        }
 }
 
 void WordsTable::addNewWord()
@@ -79,6 +77,33 @@ void WordsTable::on_deleteWordButton_clicked()
 void WordsTable::saveWords()
 {
     checkBoxesWithWords.wordsVector.saveWords();
+}
+
+void WordsTable::showRegularAddWordDialog()
+{
+    AddNewWordDialog *dialog= new AddNewWordDialog;
+    dialog->show();
+    if (dialog->exec() == 1){
+        newWord.setText(dialog->inputText);
+        newWord.setAccent(dialog->inputAccent);
+        newWord.setId(checkBoxesWithWords.getLastWordId()+1);
+        newWord.setNumOfRightAnswers(0);
+        addNewWord();
+    }
+}
+
+void WordsTable::showAlternativeAddWordDialog()
+{
+    AddNewWordDialogAlternative *dialog= new AddNewWordDialogAlternative;
+    dialog->show();
+    if (dialog->exec() == 1){
+        //qDebug()<<dialog->inputAccent;
+        newWord.setText(dialog->inputText);
+        newWord.setAccent(dialog->inputAccent);
+        newWord.setId(checkBoxesWithWords.getLastWordId()+1);
+        newWord.setNumOfRightAnswers(0);
+        addNewWord();
+    }
 }
 
 int WordsTable::showWarningAndReturnExecCode(int howManyWordsWillBeDelete)

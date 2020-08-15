@@ -33,6 +33,7 @@ private:
     void wrongAnswerTextAdd();
     void setGreenButtonStyleSheet(QPushButton & b);
     void setRedLableStyleSheet (QLabel &l);
+    void allWordsAreLearned();
 private slots:
     void rightVowelClick();
     void wrongVowelClick();

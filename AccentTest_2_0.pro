@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     AccentTest.cpp \
     AddNewWordDialog.cpp \
+    AddNewWordDialogAlternative.cpp \
     AppSettings.cpp \
     ButtonsWithLetter.cpp \
     CheckBoxesWithWords.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 HEADERS += \
     AccentTest.h \
     AddNewWordDialog.h \
+    AddNewWordDialogAlternative.h \
     AppSettings.h \
     ButtonsWithLetter.h \
     CheckBoxesWithWords.h \
@@ -43,6 +45,7 @@ HEADERS += \
 FORMS += \
     AccentTest.ui \
     AddNewWordDialog.ui \
+    AddNewWordDialogAlternative.ui \
     AppSettings.ui \
     DeleteWordsWarning.ui \
     MainMenu.ui \

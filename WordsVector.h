@@ -4,6 +4,7 @@
 #include <WordWithAccentAndStatistic.h>
 #include <QDebug>
 #include <QFile>
+#include <AppSettings.h>
 
 class WordsVector
 {
@@ -15,6 +16,7 @@ public:
     int getGoodRandomWordNum();
     WordWithAccentAndStatistic& operator [] (int index);
     std::vector<WordWithAccentAndStatistic> words;
+    AppSettings appSettings;
 private:
     QFile wordsFile;
     QString fileName = "words_and_accents";
