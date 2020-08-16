@@ -16,12 +16,13 @@ AddNewWordDialogAlternative::~AddNewWordDialogAlternative()
 void AddNewWordDialogAlternative::on_buttonBox_accepted()
 {
     //TODO - выводить предупреждение, а не просто закрывать
-    if(getInputAccent()==-1){
+    inputText = ui->wordLineEdit->text();
+    int tempAccent = getInputAccent();
+    if(tempAccent == -1){
         this->reject();
     }
     else{
-        inputText = ui->wordLineEdit->text();
-        inputAccent = getInputAccent();
+        inputAccent = tempAccent;
     }
 }
 
@@ -31,17 +32,18 @@ int AddNewWordDialogAlternative::getInputAccent()
     QString upperVowels = "АЕИОУЫЭЮЯ";
     int ans=0;
     int i=0;
+    //bool isWordCorrect = false;
     for (auto n: inputText){
         if (vowels.contains(n)){
             ++ans;
-            qDebug()<<n;
         }
         if (upperVowels.contains(n)){
             ++ans;
             inputText[i]=vowels[upperVowels.indexOf(n)];
-            return ans;
+            //isWordCorrect = true;
+            break;
         }
         ++i;
     }
-    return -1;
+    return i<inputText.size() ? ans : -1;
 }
