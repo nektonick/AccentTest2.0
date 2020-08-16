@@ -6,6 +6,9 @@ AddNewWordDialog::AddNewWordDialog(QWidget *parent) :
     ui(new Ui::AddNewWordDialog)
 {
     ui->setupUi(this);
+    ui->accentLineEdit->setValidator(new QIntValidator(1, 999, this));
+    ui->wordLineEdit->setValidator(new QRegExpValidator(QRegExp(QString::fromUtf8("[а-я]+")), ui->wordLineEdit));
+
 }
 
 AddNewWordDialog::~AddNewWordDialog()

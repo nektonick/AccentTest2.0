@@ -7,7 +7,6 @@ WordsTable::WordsTable(QWidget *parent)
     ui = new Ui::WordsTable;
     ui->setupUi(this);
     showWords();
-    //TODO - парсер форм ввода
 }
 
 WordsTable::~WordsTable()

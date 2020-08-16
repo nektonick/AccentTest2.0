@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QDebug>
+#include <QValidator>
 
 namespace Ui {
 class AddNewWordDialog;

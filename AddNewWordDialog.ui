@@ -37,7 +37,7 @@
       <bool>false</bool>
      </property>
      <property name="placeholderText">
-      <string>номер ударной гласной (1-99)</string>
+      <string>номер ударной гласной (1-999)</string>
      </property>
     </widget>
    </item>

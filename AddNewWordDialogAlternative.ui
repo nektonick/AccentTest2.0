@@ -34,6 +34,9 @@
        <pointsize>14</pointsize>
       </font>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::TabFocus</enum>
+     </property>
      <property name="placeholderText">
       <string>апострОф</string>
      </property>

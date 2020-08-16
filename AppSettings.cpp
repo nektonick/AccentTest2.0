@@ -80,7 +80,7 @@ void AppSettings::createDefaultFile()
     if (settings.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
         QTextStream outStream(&settings);
         //format: "wordsInputType rightAnswersInARow"
-        outStream<< QString::fromUtf8("0 4");
+        outStream<< QString::fromUtf8("1 4");
         settings.close();
     }
 }

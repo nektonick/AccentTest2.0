@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QDebug>
 #include <string>
+#include <QMessageBox>
+#include <QValidator>
 
 namespace Ui {
 class AddNewWordDialogAlternative;

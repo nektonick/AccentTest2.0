@@ -6,6 +6,8 @@ AddNewWordDialogAlternative::AddNewWordDialogAlternative(QWidget *parent) :
     ui(new Ui::AddNewWordDialogAlternative)
 {
     ui->setupUi(this);
+    ui->wordLineEdit->setValidator(new QRegExpValidator(QRegExp(QString::fromUtf8("[а-яА-Я]+")), ui->wordLineEdit));
+    ui->wordLineEdit->setFocus();
 }
 
 AddNewWordDialogAlternative::~AddNewWordDialogAlternative()
@@ -15,10 +17,10 @@ AddNewWordDialogAlternative::~AddNewWordDialogAlternative()
 
 void AddNewWordDialogAlternative::on_buttonBox_accepted()
 {
-    //TODO - выводить предупреждение, а не просто закрывать
     inputText = ui->wordLineEdit->text();
     int tempAccent = getInputAccent();
     if(tempAccent == -1){
+        QMessageBox::information(0, "Ошибка", "Неверный ввод. Возможно вы не выделили ударение большой буквой");
         this->reject();
     }
     else{
@@ -32,7 +34,6 @@ int AddNewWordDialogAlternative::getInputAccent()
     QString upperVowels = "АЕИОУЫЭЮЯ";
     int ans=0;
     int i=0;
-    //bool isWordCorrect = false;
     for (auto n: inputText){
         if (vowels.contains(n)){
             ++ans;
@@ -40,7 +41,6 @@ int AddNewWordDialogAlternative::getInputAccent()
         if (upperVowels.contains(n)){
             ++ans;
             inputText[i]=vowels[upperVowels.indexOf(n)];
-            //isWordCorrect = true;
             break;
         }
         ++i;
