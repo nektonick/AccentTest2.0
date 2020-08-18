@@ -35,7 +35,7 @@ void WordsTable::on_addNewWordButton_clicked()
 
 void WordsTable::addNewWord()
 {
-    checkBoxesWithWords.wordsVector.words.push_back(newWord);
+    checkBoxesWithWords.wordsVector.push_back(newWord);
     wordsUpdate();
 }
 
@@ -62,7 +62,7 @@ void WordsTable::on_deleteWordButton_clicked()
             for (int j=0; j<checkBoxesWithWords.size(); ++j){
                 if (checkBoxesWithWords[j].isChecked()){
                     checkBoxesWithWords.checkBoxesVector[j]->close();
-                    checkBoxesWithWords.wordsVector.words.erase(checkBoxesWithWords.wordsVector.words.begin()+j);
+                    checkBoxesWithWords.wordsVector.erase(checkBoxesWithWords.wordsVector.begin()+j);
                     checkBoxesWithWords.checkBoxesVector.erase(checkBoxesWithWords.checkBoxesVector.begin()+j);
                     --wordsToDelete;
                     break;

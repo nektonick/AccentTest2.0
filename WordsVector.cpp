@@ -44,7 +44,7 @@ void WordsVector::readWordsFromFile()
             inStream>>tempId >> tempWord >>tempAccent >> tempRightAnswersInARow;
             if (tempWord != ""){
                 WordWithAccentAndStatistic word(tempId, tempWord.toUtf8().constData(), tempAccent,tempRightAnswersInARow);
-                words.push_back(word);
+                this->push_back(word);
             }
         }
         wordsFile.close();
@@ -72,38 +72,9 @@ void WordsVector::saveWords()
     }
     if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
         QTextStream outStream(&wordsFile);
-        for (auto w : words){
+        for (auto w : *this){
             outStream<<w.getId()<<" "<<w.getText()<<" "<<w.getRightAccent()<<" "<<w.getNumOfRightAnswers()<<endl;
         }
         wordsFile.close();
     }
-}
-
-int WordsVector::size()
-{
-    return words.size();
-}
-
-int WordsVector::getGoodRandomWordNum()
-{
-    int id = rand()%(words.size());
-    unsigned int numOfTry = 0;
-    while (words[id].getNumOfRightAnswers()>= appSettings.getRightAnswersInARow() && numOfTry < words.size()*5){
-        id = rand()%words.size();
-        ++numOfTry;
-    }
-    if(numOfTry >= words.size()*5){
-        for (unsigned int i=0; i<words.size(); ++i){
-            if (words[i].getNumOfRightAnswers() < appSettings.getRightAnswersInARow()){
-                return words[i].getId();
-            }
-        }
-        id = -1;
-    }
-    return id;
-}
-
-WordWithAccentAndStatistic &WordsVector::operator [](int index)
-{
-    return words[index];
 }

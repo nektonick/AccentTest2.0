@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <WordsVector.h>
 #include <ButtonsWithLetter.h>
+#include <AppSettings.h>
 
 namespace Ui {
 class AccentTest;
@@ -27,6 +28,7 @@ private:
     QLabel wrongAnswerLabel;
     QString inputAccent;
     int currentWordNum;
+    AppSettings appSettings;
 
     void showRandomWord();
     void showRightAnswer();
@@ -35,6 +37,7 @@ private:
     void setGreenButtonStyleSheet(QPushButton & b);
     void setRedLableStyleSheet (QLabel &l);
     void allWordsAreLearned();
+    int getGoodRandomWordNum();
 private slots:
     void rightVowelClick();
     void wrongVowelClick();

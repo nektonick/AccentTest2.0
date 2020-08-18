@@ -14,7 +14,7 @@ AccentTest::~AccentTest(){
 }
 
 void AccentTest::showRandomWord(){
-    currentWordNum = wordsVector.getGoodRandomWordNum();
+    currentWordNum = getGoodRandomWordNum();
     if (currentWordNum == -1){
         allWordsAreLearned();
     }
@@ -37,6 +37,24 @@ void AccentTest::showRandomWord(){
     }
 }
 
+int AccentTest::getGoodRandomWordNum()
+{
+    int id = rand()%(wordsVector.size());
+    unsigned int numOfTry = 0;
+    while (wordsVector[id].getNumOfRightAnswers() >= appSettings.getRightAnswersInARow() && numOfTry < wordsVector.size()*5){
+        id = rand()%wordsVector.size();
+        ++numOfTry;
+    }
+    if(numOfTry >= wordsVector.size()*5){
+        for (unsigned int i=0; i<wordsVector.size(); ++i){
+            if (wordsVector[i].getNumOfRightAnswers() < appSettings.getRightAnswersInARow()){
+                return wordsVector[i].getId();
+            }
+        }
+        id = -1;
+    }
+    return id;
+}
 void AccentTest::rightVowelClick()
 {
     wordsVector[currentWordNum].setNumOfRightAnswers(currentWord.getNumOfRightAnswers()+1);
