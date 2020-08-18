@@ -12,7 +12,7 @@ public:
     ~ButtonsWithLetter();
     std::vector<QPushButton*> buttonsWithLetter;
     void generateButtonsFor(WordWithAccentAndStatistic word);
-    void generateAnswer(WordWithAccentAndStatistic word);
+    void generateButtonWithRightAnswer(WordWithAccentAndStatistic word);
     void deleteAllButtons();
     int size();
     QPushButton& operator [] (int index);

@@ -8,6 +8,7 @@ WordsVector::WordsVector()
         qDebug()<<"file is already open"<<endl;
         wordsFile.close();
     }
+    getWordsByReadingFromFileOrCreatingDefaultFile();
 }
 
 void WordsVector::getWordsByReadingFromFileOrCreatingDefaultFile()

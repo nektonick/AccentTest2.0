@@ -25,7 +25,7 @@ void ButtonsWithLetter::generateButtonsFor(WordWithAccentAndStatistic word)
     }
 }
 
-void ButtonsWithLetter::generateAnswer(WordWithAccentAndStatistic word)
+void ButtonsWithLetter::generateButtonWithRightAnswer(WordWithAccentAndStatistic word)
 {
     QPushButton *b = new QPushButton();
     QString text = WordWithAccentAndStatistic::getWordWithRightAccent(word);

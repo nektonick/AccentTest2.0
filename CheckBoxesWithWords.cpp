@@ -2,7 +2,7 @@
 
 CheckBoxesWithWords::CheckBoxesWithWords()
 {
-    wordsVector.getWordsByReadingFromFileOrCreatingDefaultFile();
+
 }
 
 void CheckBoxesWithWords::generateCheckBoxes()
