@@ -85,6 +85,7 @@ void AccentTest::showRightAnswer()
     ui->buttonsLayout->addWidget(&buttons[0]);
     connect(&buttons[0], SIGNAL(clicked()), this, SLOT(nextWordClick()));
 }
+
 void AccentTest::saveWordsStatistic()
 {
     wordsVector.saveWords();

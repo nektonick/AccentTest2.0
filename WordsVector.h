@@ -10,14 +10,15 @@ class WordsVector
 {
 public:
     WordsVector();
+    ~WordsVector();
     void getWordsByReadingFromFileOrCreatingDefaultFile();
     void saveWords();
     int size();
     int getGoodRandomWordNum();
-    WordWithAccentAndStatistic& operator [] (int index);
     std::vector<WordWithAccentAndStatistic> words;
-    AppSettings appSettings;
+    WordWithAccentAndStatistic& operator [] (int index);
 private:
+    AppSettings appSettings;
     QFile wordsFile;
     QString fileName = "words_and_accents";
     void readWordsFromFile();

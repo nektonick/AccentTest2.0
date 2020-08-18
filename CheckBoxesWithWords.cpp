@@ -53,7 +53,7 @@ QCheckBox &CheckBoxesWithWords::operator [](int index)
 
 int CheckBoxesWithWords::getLastWordId()
 {
-    return wordsVector.words[wordsVector.words.size()-1].getId();
+    return wordsVector[wordsVector.size()-1].getId();
 }
 
 void CheckBoxesWithWords::clear()

@@ -11,6 +11,11 @@ WordsVector::WordsVector()
     getWordsByReadingFromFileOrCreatingDefaultFile();
 }
 
+WordsVector::~WordsVector()
+{
+    wordsFile.close();
+}
+
 void WordsVector::getWordsByReadingFromFileOrCreatingDefaultFile()
 {
     if (wordsFile.exists()){
@@ -82,13 +87,13 @@ int WordsVector::size()
 int WordsVector::getGoodRandomWordNum()
 {
     int id = rand()%(words.size());
-    int numOfTry=0;
+    unsigned int numOfTry = 0;
     while (words[id].getNumOfRightAnswers()>= appSettings.getRightAnswersInARow() && numOfTry < words.size()*5){
         id = rand()%words.size();
         ++numOfTry;
     }
     if(numOfTry >= words.size()*5){
-        for (int i=0; i<words.size(); ++i){
+        for (unsigned int i=0; i<words.size(); ++i){
             if (words[i].getNumOfRightAnswers() < appSettings.getRightAnswersInARow()){
                 return words[i].getId();
             }
@@ -102,4 +107,3 @@ WordWithAccentAndStatistic &WordsVector::operator [](int index)
 {
     return words[index];
 }
-
