@@ -1,9 +1,7 @@
 #include "MainMenu.h"
 #include "ui_MainMenu.h"
 
-MainMenu::MainMenu(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainMenu)
+MainMenu::MainMenu(QWidget *parent): QMainWindow(parent), ui(new Ui::MainMenu)
 {
     ui->setupUi(this);
     ui->label->setStyleSheet(
@@ -23,10 +21,18 @@ MainMenu::~MainMenu()
     delete ui;
 }
 
+void MainMenu::set28pxFont(QPushButton *button)
+{
+    button->setStyleSheet(
+                "font-size: 28px;"
+                "font-weight: normal;"
+                "margin: 0.5px; padding: 0px;"
+                );
+}
 
 void MainMenu::on_StartButton_clicked()
 {
-    //костыль с передачей ссылки на виджет, чтобы потом сделать MainWindow.show();
+    //передача ссылки на MainMenu, чтобы при зыкрытии нового окна сделать MainWindow.show();
     AccentTest *test= new AccentTest(this);
     test->show();
     hide();
@@ -39,11 +45,6 @@ void MainMenu::on_ShowAllWorldsButton_clicked()
     hide();
 }
 
-void MainMenu::on_ExitButton_clicked()
-{
-    close();
-}
-
 void MainMenu::on_optionsButton_clicked()
 {
     AppSettings *appSettings = new AppSettings(this);
@@ -51,18 +52,14 @@ void MainMenu::on_optionsButton_clicked()
     this->hide();
 }
 
-void MainMenu::set28pxFont(QPushButton *button)
-{
-    button->setStyleSheet(
-                "font-size: 28px;"
-                "font-weight: normal;"
-                "margin: 0.5px; padding: 0px;"
-                );
-}
-
 void MainMenu::on_AboutButton_clicked()
 {
     AboutApp *aboutApp = new AboutApp(this);
     aboutApp->show();
     this->hide();
+}
+
+void MainMenu::on_ExitButton_clicked()
+{
+    close();
 }

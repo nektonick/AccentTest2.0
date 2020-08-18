@@ -14,20 +14,15 @@ QT_END_NAMESPACE
 class MainMenu : public QMainWindow
 {
     Q_OBJECT
-
 public:
     MainMenu(QWidget *parent = nullptr);
     ~MainMenu();
 private slots:
     void on_StartButton_clicked();
     void on_ShowAllWorldsButton_clicked();
-
-    void on_ExitButton_clicked();
-
     void on_optionsButton_clicked();
-
     void on_AboutButton_clicked();
-
+    void on_ExitButton_clicked();
 private:
     Ui::MainMenu *ui;
     void set28pxFont(QPushButton * button);
