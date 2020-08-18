@@ -59,3 +59,10 @@ void MainMenu::set28pxFont(QPushButton *button)
                 "margin: 0.5px; padding: 0px;"
                 );
 }
+
+void MainMenu::on_AboutButton_clicked()
+{
+    AboutApp *aboutApp = new AboutApp(this);
+    aboutApp->show();
+    this->hide();
+}

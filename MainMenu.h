@@ -5,6 +5,7 @@
 #include <AccentTest.h>
 #include <WordsTable.h>
 #include <AppSettings.h>
+#include <AboutApp.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainMenu; }
@@ -24,6 +25,8 @@ private slots:
     void on_ExitButton_clicked();
 
     void on_optionsButton_clicked();
+
+    void on_AboutButton_clicked();
 
 private:
     Ui::MainMenu *ui;

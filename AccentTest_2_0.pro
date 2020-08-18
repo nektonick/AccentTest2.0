@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    AboutApp.cpp \
     AccentTest.cpp \
     AddNewWordDialog.cpp \
     AddNewWordDialogAlternative.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
     MainMenu.cpp
 
 HEADERS += \
+    AboutApp.h \
     AccentTest.h \
     AddNewWordDialog.h \
     AddNewWordDialogAlternative.h \
@@ -43,6 +45,7 @@ HEADERS += \
     WordsVector.h
 
 FORMS += \
+    AboutApp.ui \
     AccentTest.ui \
     AddNewWordDialog.ui \
     AddNewWordDialogAlternative.ui \
