@@ -73,7 +73,7 @@ void WordsVector::saveWords()
     if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
         QTextStream outStream(&wordsFile);
         for (auto w : *this){
-            outStream<<w.getId()<<" "<<w.getText()<<" "<<w.getRightAccent()<<" "<<w.getNumOfRightAnswers()<<endl;
+            outStream<<w.id<<" "<<w.wordText<<" "<<w.rightAccent<<" "<<w.rightAnswersInARow<<endl;
         }
         wordsFile.close();
     }

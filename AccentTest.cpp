@@ -26,7 +26,7 @@ void AccentTest::showRandomWord(){
             ui->buttonsLayout->addWidget(&buttons[i]);
             if (WordWithAccentAndStatistic::isVowel(buttons[i].text()[0])){
                 numberOfReadedVowels++;
-                if (numberOfReadedVowels == currentWord.getRightAccent()){
+                if (numberOfReadedVowels == currentWord.rightAccent){
                     connect(&buttons[i], SIGNAL(clicked()), this, SLOT(rightVowelClick()));
                 }
                 else{
@@ -41,14 +41,14 @@ int AccentTest::getGoodRandomWordNum()
 {
     int id = rand()%(wordsVector.size());
     unsigned int numOfTry = 0;
-    while (wordsVector[id].getNumOfRightAnswers() >= appSettings.getRightAnswersInARow() && numOfTry < wordsVector.size()*5){
+    while (wordsVector[id].rightAnswersInARow >= appSettings.getRightAnswersInARow() && numOfTry < wordsVector.size()*5){
         id = rand()%wordsVector.size();
         ++numOfTry;
     }
     if(numOfTry >= wordsVector.size()*5){
         for (unsigned int i=0; i<wordsVector.size(); ++i){
-            if (wordsVector[i].getNumOfRightAnswers() < appSettings.getRightAnswersInARow()){
-                return wordsVector[i].getId();
+            if (wordsVector[i].rightAnswersInARow < appSettings.getRightAnswersInARow()){
+                return wordsVector[i].id;
             }
         }
         id = -1;
@@ -57,7 +57,7 @@ int AccentTest::getGoodRandomWordNum()
 }
 void AccentTest::rightVowelClick()
 {
-    wordsVector[currentWordNum].setNumOfRightAnswers(currentWord.getNumOfRightAnswers()+1);
+    wordsVector[currentWordNum].rightAnswersInARow = currentWord.rightAnswersInARow + 1;
     saveWordsStatistic();
     buttons.deleteAllButtons();
     showRightAnswer();
@@ -70,7 +70,7 @@ void AccentTest::setGreenButtonStyleSheet(QPushButton &b)
 
 void AccentTest::wrongVowelClick()
 {
-    wordsVector[currentWordNum].setNumOfRightAnswers(0);
+    wordsVector[currentWordNum].rightAnswersInARow = 0;
     saveWordsStatistic();
     inputAccent = this->sender()->objectName(); //objectName содержит номер глассной
     buttons.deleteAllButtons();
@@ -86,7 +86,7 @@ void AccentTest::setRedLableStyleSheet(QLabel &l)
 
 void AccentTest::showUserWrongAnswer()
 {
-    QString s = currentWord.getText();
+    QString s = currentWord.wordText;
     //буква, которую нажал пользователь, становится большой
     s[inputAccent.toInt()] = WordWithAccentAndStatistic::makeLetterBig(s[inputAccent.toInt()]);
     s.insert(inputAccent.toInt()+1, " ́"); //символ ударения

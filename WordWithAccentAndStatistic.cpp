@@ -8,45 +8,25 @@ WordWithAccentAndStatistic::WordWithAccentAndStatistic
 (int id, QString word, int accentLetterNumber, int rightAnswersInARow = 0)
 {
     this->id = id;
-    this->word = word;
-    this->accentLetterNumber = accentLetterNumber;
+    this->wordText = word;
+    this->rightAccent = accentLetterNumber;
     this->rightAnswersInARow = rightAnswersInARow;
-}
-
-int WordWithAccentAndStatistic::getRightAccent()
-{
-    return this->accentLetterNumber;
-}
-
-int WordWithAccentAndStatistic::getNumOfRightAnswers()
-{
-    return  rightAnswersInARow;
 }
 
 bool WordWithAccentAndStatistic::isInputAccentRight(int inputAccent)
 {
-    return (inputAccent == this->getRightAccent());
-}
-
-QString WordWithAccentAndStatistic::getText()
-{
-    return word;
-}
-
-int WordWithAccentAndStatistic::getId()
-{
-    return id;
+    return (inputAccent == rightAccent);
 }
 
 int WordWithAccentAndStatistic::getWordSize()
 {
-    return word.size();
+    return wordText.size();
 }
 
 QString WordWithAccentAndStatistic::getNCharInWordInQstringFormat(int n)
 {
     QString s ="";
-    s += word[n];
+    s += wordText[n];
     return (s);
 }
 
@@ -54,37 +34,18 @@ QString WordWithAccentAndStatistic::getWordWithRightAccent(WordWithAccentAndStat
 {
     int vowel=0;
     int i=0;
-    while (vowel != word.accentLetterNumber) {
-        if(isVowel(word.getText()[i]))
+    while (vowel != word.rightAccent) {
+        if(isVowel(word.wordText[i]))
             vowel++;
         i++;
     }
     i--; //сдвиг влево, так как буквы в слове с нуля, а глассные с единицы
-    QString ans = word.getText();
+    QString ans = word.wordText;
     ans[i]=makeLetterBig(ans[i]);
     ans.insert(i+1, " ́"); //символ ударения
     return ans;
 }
 
-void WordWithAccentAndStatistic::setText(QString text)
-{
-    word = text;
-}
-
-void WordWithAccentAndStatistic::setAccent(int inputAccent)
-{
-    accentLetterNumber = inputAccent;
-}
-
-void WordWithAccentAndStatistic::setId(int inputId)
-{
-    id = inputId;
-}
-
-void WordWithAccentAndStatistic::setNumOfRightAnswers(int numOfRightAnswers)
-{
-    rightAnswersInARow = numOfRightAnswers;
-}
 
 QChar WordWithAccentAndStatistic::makeLetterBig(QCharRef c)
 {

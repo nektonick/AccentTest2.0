@@ -83,10 +83,10 @@ void WordsTable::showRegularAddWordDialog()
     AddNewWordDialog *dialog= new AddNewWordDialog;
     dialog->show();
     if (dialog->exec() == 1){
-        newWord.setText(dialog->inputText);
-        newWord.setAccent(dialog->inputAccent);
-        newWord.setId(checkBoxesWithWords.getLastWordId()+1);
-        newWord.setNumOfRightAnswers(0);
+        newWord.wordText = dialog->inputText;
+        newWord.rightAccent = dialog->inputAccent;
+        newWord.id = checkBoxesWithWords.getLastWordId()+1;
+        newWord.rightAnswersInARow = 0;
         addNewWord();
     }
 }
@@ -96,11 +96,10 @@ void WordsTable::showAlternativeAddWordDialog()
     AddNewWordDialogAlternative *dialog= new AddNewWordDialogAlternative;
     dialog->show();
     if (dialog->exec() == 1){
-        //qDebug()<<dialog->inputAccent;
-        newWord.setText(dialog->inputText);
-        newWord.setAccent(dialog->inputAccent);
-        newWord.setId(checkBoxesWithWords.getLastWordId()+1);
-        newWord.setNumOfRightAnswers(0);
+        newWord.wordText = dialog->inputText;
+        newWord.rightAccent = dialog->inputAccent;
+        newWord.id = checkBoxesWithWords.getLastWordId()+1;
+        newWord.rightAnswersInARow = 0;
         addNewWord();
     }
 }
@@ -126,7 +125,7 @@ void WordsTable::on_returnButton_clicked()
 void WordsTable::on_clearStatisticButton_clicked()
 {
     for(int i=0; i<checkBoxesWithWords.wordsVector.size(); ++i){
-        checkBoxesWithWords.wordsVector[i].setNumOfRightAnswers(0);
+        checkBoxesWithWords.wordsVector[i].rightAnswersInARow = 0;
     }
     saveWords();
     wordsUpdate();
