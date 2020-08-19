@@ -15,9 +15,9 @@ WordsTable::~WordsTable()
 
 void WordsTable::showWords()
 {
-    checkBoxesWithWords.generateCheckBoxes();
-    for (int i=0; i<checkBoxesWithWords.size(); ++i){
-        ui->wordsArea->addWidget(&checkBoxesWithWords[i]);
+    wordsWithCheckBoxVector.generateWordsCheckBoxes();
+    for (unsigned int i = 0; i < wordsWithCheckBoxVector.size(); ++i){
+        ui->wordsArea->addWidget(wordsWithCheckBoxVector[i]);
     }
 }
 
@@ -39,7 +39,7 @@ void WordsTable::showRegularAddWordDialog()
     if (dialog->exec() == 1){
         newWord.wordText = dialog->inputText;
         newWord.rightAccent = dialog->inputAccent;
-        newWord.id = checkBoxesWithWords.getLastWordId()+1;
+        newWord.id = wordsWithCheckBoxVector.getLastWordId() + 1;
         newWord.rightAnswersInARow = 0;
         addNewWord();
     }
@@ -52,7 +52,7 @@ void WordsTable::showAlternativeAddWordDialog()
     if (dialog->exec() == 1){
         newWord.wordText = dialog->inputText;
         newWord.rightAccent = dialog->inputAccent;
-        newWord.id = checkBoxesWithWords.getLastWordId()+1;
+        newWord.id = wordsWithCheckBoxVector.getLastWordId() + 1;
         newWord.rightAnswersInARow = 0;
         addNewWord();
     }
@@ -60,23 +60,26 @@ void WordsTable::showAlternativeAddWordDialog()
 
 void WordsTable::addNewWord()
 {
-    checkBoxesWithWords.wordsVector.push_back(newWord);
+    wordsWithCheckBoxVector.wordsVector.push_back(newWord);
     wordsUpdate();
 }
 
 void WordsTable::wordsUpdate()
 {
-    checkBoxesWithWords.clear();
-    checkBoxesWithWords.generateCheckBoxes();
-    for (int i=0; i<checkBoxesWithWords.size(); ++i){
-        ui->wordsArea->addWidget(&checkBoxesWithWords[i]);
+    for (auto i: wordsWithCheckBoxVector){
+        delete i;
+    }
+    wordsWithCheckBoxVector.clear();
+    wordsWithCheckBoxVector.generateWordsCheckBoxes();
+    for (unsigned int i = 0; i < wordsWithCheckBoxVector.size(); ++i){
+        ui->wordsArea->addWidget(wordsWithCheckBoxVector[i]);
     }
 }
 void WordsTable::on_deleteWordButton_clicked()
 {
     int wordsToDelete=0;
-    for (int i=0; i<checkBoxesWithWords.size(); ++i){
-        if (checkBoxesWithWords[i].isChecked())
+    for (unsigned int i = 0; i < wordsWithCheckBoxVector.size(); ++i){
+        if (wordsWithCheckBoxVector[i]->isChecked())
             ++wordsToDelete;
     }
 
@@ -85,11 +88,11 @@ void WordsTable::on_deleteWordButton_clicked()
         //костыль. не смог придумать хорошего удаления из вектора в цикле.
         //Использованием итераторов проблему решить не удалось
         while (wordsToDelete > 0){
-            for (int j=0; j<checkBoxesWithWords.size(); ++j){
-                if (checkBoxesWithWords[j].isChecked()){
-                    checkBoxesWithWords.checkBoxesVector[j]->close();
-                    checkBoxesWithWords.wordsVector.erase(checkBoxesWithWords.wordsVector.begin()+j);
-                    checkBoxesWithWords.checkBoxesVector.erase(checkBoxesWithWords.checkBoxesVector.begin()+j);
+            for (unsigned int j = 0; j < wordsWithCheckBoxVector.size(); ++j){
+                if (wordsWithCheckBoxVector[j]->isChecked()){
+                    wordsWithCheckBoxVector[j]->close();
+                    wordsWithCheckBoxVector.wordsVector.erase(wordsWithCheckBoxVector.wordsVector.begin() + j);
+                    wordsWithCheckBoxVector.erase(wordsWithCheckBoxVector.begin() + j);
                     --wordsToDelete;
                     break;
                 }
@@ -111,13 +114,13 @@ int WordsTable::showWarningAndReturnExecCode(int howManyWordsWillBeDelete)
 
 void WordsTable::saveWords()
 {
-    checkBoxesWithWords.wordsVector.saveWords();
+    wordsWithCheckBoxVector.wordsVector.saveWords();
 }
 
 void WordsTable::on_clearStatisticButton_clicked()
 {
-    for(unsigned int i=0; i<checkBoxesWithWords.wordsVector.size(); ++i){
-        checkBoxesWithWords.wordsVector[i].rightAnswersInARow = 0;
+    for(unsigned int i = 0; i < wordsWithCheckBoxVector.wordsVector.size(); ++i){
+        wordsWithCheckBoxVector.wordsVector[i].rightAnswersInARow = 0;
     }
     saveWords();
     wordsUpdate();

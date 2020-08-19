@@ -1,9 +1,7 @@
 #include "DeleteWordsWarning.h"
 #include "ui_DeleteWordsWarning.h"
 
-DeleteWordsWarning::DeleteWordsWarning(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DeleteWordsWarning)
+DeleteWordsWarning::DeleteWordsWarning(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteWordsWarning)
 {
     ui->setupUi(this);
 }

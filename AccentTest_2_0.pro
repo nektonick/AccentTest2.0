@@ -22,11 +22,11 @@ SOURCES += \
     AddNewWordDialogAlternative.cpp \
     AppSettings.cpp \
     ButtonsWithLetter.cpp \
-    CheckBoxesWithWords.cpp \
     DeleteWordsWarning.cpp \
     WordWithAccentAndStatistic.cpp \
     WordsTable.cpp \
     WordsVector.cpp \
+    WordsWithCheckBoxVector.cpp \
     main.cpp \
     MainMenu.cpp
 
@@ -37,12 +37,12 @@ HEADERS += \
     AddNewWordDialogAlternative.h \
     AppSettings.h \
     ButtonsWithLetter.h \
-    CheckBoxesWithWords.h \
     DeleteWordsWarning.h \
     MainMenu.h \
     WordWithAccentAndStatistic.h \
     WordsTable.h \
-    WordsVector.h
+    WordsVector.h \
+    WordsWithCheckBoxVector.h
 
 FORMS += \
     AboutApp.ui \

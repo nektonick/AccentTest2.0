@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QCheckBox>
 #include <WordsVector.h>
-#include <CheckBoxesWithWords.h>
+#include <WordsWithCheckBoxVector.h>
 #include <AddNewWordDialog.h>
 #include <AddNewWordDialogAlternative.h>
 #include <DeleteWordsWarning.h>
@@ -24,7 +24,7 @@ public:
 private:
     Ui::WordsTable *ui;
     QWidget *mainWidget;
-    CheckBoxesWithWords checkBoxesWithWords;
+    WordsWithCheckBoxVector wordsWithCheckBoxVector;
     WordWithAccentAndStatistic newWord;
     AppSettings appSettings;
     void showWords();
