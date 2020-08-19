@@ -4,8 +4,9 @@ WordWithAccentAndStatistic::WordWithAccentAndStatistic()
 {
 
 }
-WordWithAccentAndStatistic::WordWithAccentAndStatistic
-(int id, QString word, int accentLetterNumber, int rightAnswersInARow = 0)
+
+WordWithAccentAndStatistic::WordWithAccentAndStatistic(
+        int id, QString word, int accentLetterNumber, int rightAnswersInARow = 0)
 {
     this->id = id;
     this->wordText = word;
@@ -39,23 +40,22 @@ QString WordWithAccentAndStatistic::getWordWithRightAccent(WordWithAccentAndStat
             vowel++;
         i++;
     }
-    i--; //сдвиг влево, так как буквы в слове с нуля, а глассные с единицы
+    i--; //без этого работает неверно
     QString ans = word.wordText;
     ans[i]=makeLetterBig(ans[i]);
     ans.insert(i+1, " ́"); //символ ударения
     return ans;
 }
 
-
-QChar WordWithAccentAndStatistic::makeLetterBig(QCharRef c)
+QChar WordWithAccentAndStatistic::makeLetterBig(QCharRef inputChar)
 {
     QString lower = "аеиоуыэюя";
     QString upper = "АЕИОУЫЭЮЯ";
-    return upper[lower.indexOf(c)];
+    return upper[lower.indexOf(inputChar)];
 }
 
 bool WordWithAccentAndStatistic::isVowel(QCharRef s)
 {
-    QString vowels ="аеёиоуыэюя";
+    QString vowels ="аеёиоуыэюяАЕЁИОУЫЭЮЯ";
     return vowels.contains(s);
 }

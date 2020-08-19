@@ -15,7 +15,7 @@ public:
     int getWordSize();
     bool isInputAccentRight(int inputAccent);
     QString getNCharInWordInQstringFormat(int n);
-    static QChar makeLetterBig(QCharRef c);
+    static QChar makeLetterBig(QCharRef inputChar);
     static bool isVowel(QCharRef s);
     static QString getWordWithRightAccent(WordWithAccentAndStatistic wordText);
 

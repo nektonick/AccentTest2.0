@@ -7,7 +7,7 @@ CheckBoxesWithWords::CheckBoxesWithWords()
 
 void CheckBoxesWithWords::generateCheckBoxes()
 {
-    for (int i=0; i<wordsVector.size(); ++i){
+    for (unsigned int i=0; i<wordsVector.size(); ++i){
         QCheckBox *l = new QCheckBox;
         //разный текст в зависимости от числительного
         if(wordsVector[i].rightAnswersInARow == 1)

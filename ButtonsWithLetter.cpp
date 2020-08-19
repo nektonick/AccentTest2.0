@@ -37,7 +37,7 @@ void ButtonsWithLetter::generateButtonWithRightAnswer(WordWithAccentAndStatistic
 
 void ButtonsWithLetter::deleteAllButtons()
 {
-    for (int i=0; i<buttonsWithLetter.size(); ++i){
+    for (unsigned int i=0; i<buttonsWithLetter.size(); ++i){
         delete buttonsWithLetter[i];
     }
     buttonsWithLetter.clear();
