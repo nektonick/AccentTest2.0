@@ -1,9 +1,8 @@
 #include "WordsTable.h"
 #include "ui_WordsTable.h"
 
-WordsTable::WordsTable(QWidget *parent) : ui(new Ui::WordsTable)
+WordsTable::WordsTable(QWidget *parent) : ui(new Ui::WordsTable), mainWidget(parent)
 {
-    mainWidget = parent;
     ui->setupUi(this);
     showWords();
 }
@@ -70,6 +69,7 @@ void WordsTable::wordsUpdate()
         delete i;
     }
     wordsWithCheckBoxVector.clear();
+
     wordsWithCheckBoxVector.generateWordsCheckBoxes();
     for (unsigned int i = 0; i < wordsWithCheckBoxVector.size(); ++i){
         ui->wordsArea->addWidget(wordsWithCheckBoxVector[i]);

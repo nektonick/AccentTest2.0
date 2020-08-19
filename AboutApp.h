@@ -14,13 +14,11 @@ class AboutApp : public QWidget
 public:
     explicit AboutApp(QWidget *parent = nullptr);
     ~AboutApp();
-
-private slots:
-    void on_returnButton_clicked();
-
 private:
     Ui::AboutApp *ui;
     QWidget *mainWidget;
+private slots:
+    void on_returnButton_clicked();
 };
 
 #endif // ABOUTAPP_H

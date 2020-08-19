@@ -18,11 +18,10 @@ public:
     ~AddNewWordDialog();
     QString inputText;
     int inputAccent;
-private slots:
-    void on_buttonBox_accepted();
-
 private:
     Ui::AddNewWordDialog *ui;
+private slots:
+    void on_buttonBox_accepted();
 };
 
 #endif // ADDNEWWORDDIALOG_H

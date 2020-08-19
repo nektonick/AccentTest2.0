@@ -2,9 +2,8 @@
 #include "ui_AccentTest.h"
 
 
-AccentTest::AccentTest(QWidget *parent) : ui(new Ui::AccentTest) {
+AccentTest::AccentTest(QWidget *parent) : ui(new Ui::AccentTest), mainWidget(parent) {
     ui->setupUi(this);
-    mainWidget = parent;
     ui->buttonsLayout->setSpacing(0);
     this->showRandomWord();
 }

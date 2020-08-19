@@ -35,14 +35,14 @@ void WordsVector::readWordsFromFile()
     }
     if (wordsFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         QTextStream inStream(&wordsFile);
-        int tempId=0;
-        QString tempWord="";
-        int tempAccent=0;
+        int tempId = 0;
+        QString tempWord = "";
+        int tempAccent = 0;
         int tempRightAnswersInARow = 0;
 
         while (!inStream.atEnd()) {
-            inStream>>tempId >> tempWord >>tempAccent >> tempRightAnswersInARow;
-            if (tempWord != ""){
+            inStream >> tempId >> tempWord >>tempAccent >> tempRightAnswersInARow;
+            if (tempWord != "" && tempAccent){
                 WordWithAccentAndStatistic word(tempId, tempWord.toUtf8().constData(), tempAccent,tempRightAnswersInARow);
                 this->push_back(word);
             }
@@ -59,6 +59,8 @@ void WordsVector::createDefaultWordsFileIfItNotExist()
     }
     if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
         QTextStream outStream(&wordsFile);
+        //TODO - дефолтный список слов
+        //format: "id word rightAccent rightAnswersInRow" <<endl
         outStream<< QString::fromUtf8("0 апостроф 3 0")<<endl;
         wordsFile.close();
     }
@@ -73,7 +75,7 @@ void WordsVector::saveWords()
     if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
         QTextStream outStream(&wordsFile);
         for (auto w : *this){
-            outStream<<w.id<<" "<<w.wordText<<" "<<w.rightAccent<<" "<<w.rightAnswersInARow<<endl;
+            outStream << w.id << " " << w.wordText << " " << w.rightAccent << " " << w.rightAnswersInARow << endl;
         }
         wordsFile.close();
     }

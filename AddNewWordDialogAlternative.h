@@ -20,12 +20,11 @@ public:
     ~AddNewWordDialogAlternative();
     QString inputText;
     int inputAccent;
-private slots:
-    void on_buttonBox_accepted();
-
 private:
     Ui::AddNewWordDialogAlternative *ui;
     int getInputAccent();
+private slots:
+    void on_buttonBox_accepted();
 };
 
 #endif // ADDNEWWORDDIALOGALTERNATIVE_H

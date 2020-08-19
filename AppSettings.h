@@ -23,22 +23,20 @@ public:
     void showSettings();
     int getWordsInputType();
     int getRightAnswersInARow();
-
-private slots:
-    void on_returnButton_clicked();
-    void on_resetButton_clicked();
-    void on_saveButton_clicked();
-    void on_horizontalSlider_valueChanged(int value);
-
 private:
     Ui::AppSettings *ui;
+    QWidget *mainMenu = nullptr;
     int wordsInputType;
-    int rightAnswersInARow; //пока не используется
-    QFile settings;
+    int rightAnswersInARow;
+    QFile settingsFile;
     QString fileName = "settings";
     void readFromExistFile();
     void createDefaultFile();
-    QWidget *mainMenu = nullptr;
+private slots:
+    void on_resetButton_clicked();
+    void on_saveButton_clicked();
+    void on_horizontalSlider_valueChanged(int value);
+    void on_returnButton_clicked();
 };
 
 #endif // APPSETTINGS_H

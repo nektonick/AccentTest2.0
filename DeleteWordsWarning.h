@@ -15,7 +15,6 @@ public:
     explicit DeleteWordsWarning(QWidget *parent = nullptr);
     ~DeleteWordsWarning();
     void setWarningText(QString text);
-
 private:
     Ui::DeleteWordsWarning *ui;
 };

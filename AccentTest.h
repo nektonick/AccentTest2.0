@@ -20,8 +20,8 @@ public:
     explicit AccentTest(QWidget *parent = nullptr);
     ~AccentTest();
 private:
-    QWidget *mainWidget;
     Ui::AccentTest *ui;
+    QWidget *mainWidget;
     WordsVector wordsVector;
     WordWithAccentAndStatistic currentWord;
     WordLettersButtonsVector buttons;

@@ -1,9 +1,8 @@
 #include "AboutApp.h"
 #include "ui_AboutApp.h"
 
-AboutApp::AboutApp(QWidget *parent) : ui(new Ui::AboutApp)
+AboutApp::AboutApp(QWidget *parent) : ui(new Ui::AboutApp), mainWidget(parent)
 {
-    mainWidget = parent;
     ui->setupUi(this);
 }
 

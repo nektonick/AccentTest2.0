@@ -1,11 +1,10 @@
 #include "AppSettings.h"
 #include "ui_AppSettings.h"
 
-AppSettings::AppSettings(QWidget *parent) : ui(new Ui::AppSettings)
+AppSettings::AppSettings(QWidget *parent) : ui(new Ui::AppSettings), mainMenu(parent)
 {
-    mainMenu = parent;
     ui->setupUi(this);
-    settings.setFileName(fileName);
+    settingsFile.setFileName(fileName);
     readSettingsFromFile();
     showSettings();
 }
@@ -15,20 +14,15 @@ AppSettings::~AppSettings()
     delete ui;
 }
 
-void AppSettings::saveSettings()
+void AppSettings::showSettings()
 {
-    wordsInputType = ui->wordsInputModeCheckBox->isChecked();
-    rightAnswersInARow = ui->horizontalSlider->value();
-    if (settings.open(QIODevice::WriteOnly | QIODevice::Text)){
-        QTextStream outStream(&settings);
-        outStream<<wordsInputType<<' '<<rightAnswersInARow<<endl;
-        settings.close();
-    }
+    ui->wordsInputModeCheckBox->setChecked(bool(wordsInputType));
+    ui->horizontalSlider->setValue(rightAnswersInARow);
 }
 
 void AppSettings::readSettingsFromFile()
 {
-    if (settings.exists()){
+    if (settingsFile.exists()){
         readFromExistFile();
     }
     else{
@@ -37,59 +31,47 @@ void AppSettings::readSettingsFromFile()
     }
 }
 
-void AppSettings::restoreSettings()
-{
-    createDefaultFile();
-}
-
-void AppSettings::showSettings()
-{
-    ui->wordsInputModeCheckBox->setChecked(bool(wordsInputType));
-    ui->horizontalSlider->setValue(rightAnswersInARow);
-}
-
-int AppSettings::getWordsInputType()
-{
-    return  wordsInputType;
-}
-
-int AppSettings::getRightAnswersInARow()
-{
-    return  rightAnswersInARow;
-}
-
 void AppSettings::readFromExistFile()
 {
-    if (settings.isOpen()){
+    if (settingsFile.isOpen()){
         QMessageBox::information(0, "Ошибка", "Внутренняя ошибка. Файл со словами уже открыт");
-        settings.close();
+        settingsFile.close();
     }
-    if (settings.open(QIODevice::ReadOnly | QIODevice::Text)){
-        QTextStream inStream(&settings);
+    if (settingsFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream inStream(&settingsFile);
         inStream>>wordsInputType >> rightAnswersInARow;
-        settings.close();
+        settingsFile.close();
     }
 }
 
 void AppSettings::createDefaultFile()
 {
-    if (settings.isOpen()){
+    if (settingsFile.isOpen()){
         QMessageBox::information(0, "Ошибка", "Внутренняя ошибка. Файл со словами уже открыт");
-        settings.close();
+        settingsFile.close();
     }
-    if (settings.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
-        QTextStream outStream(&settings);
+    if (settingsFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
+        QTextStream outStream(&settingsFile);
         //format: "wordsInputType rightAnswersInARow"
         outStream<< QString::fromUtf8("1 4");
-        settings.close();
+        settingsFile.close();
     }
 }
 
-void AppSettings::on_returnButton_clicked()
+void AppSettings::saveSettings()
 {
-    mainMenu->show();
-    this->close();
-    this->destroy();
+    wordsInputType = ui->wordsInputModeCheckBox->isChecked();
+    rightAnswersInARow = ui->horizontalSlider->value();
+    if (settingsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
+        QTextStream outStream(&settingsFile);
+        outStream<<wordsInputType<<' '<<rightAnswersInARow<<endl;
+        settingsFile.close();
+    }
+}
+
+void AppSettings::restoreSettings()
+{
+    createDefaultFile();
 }
 
 void AppSettings::on_resetButton_clicked()
@@ -104,7 +86,24 @@ void AppSettings::on_saveButton_clicked()
     saveSettings();
 }
 
+int AppSettings::getWordsInputType()
+{
+    return  wordsInputType;
+}
+
+int AppSettings::getRightAnswersInARow()
+{
+    return  rightAnswersInARow;
+}
+
 void AppSettings::on_horizontalSlider_valueChanged(int value)
 {
     ui->currentValue->setText(QString::number(value));
+}
+
+void AppSettings::on_returnButton_clicked()
+{
+    mainMenu->show();
+    this->close();
+    this->destroy();
 }

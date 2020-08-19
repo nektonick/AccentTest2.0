@@ -4,11 +4,7 @@
 MainMenu::MainMenu(QWidget *parent): QMainWindow(parent), ui(new Ui::MainMenu)
 {
     ui->setupUi(this);
-    ui->label->setStyleSheet(
-                "font-size: 36px;"
-                "font-weight: normal;"
-                "margin: 0.5px; padding: 5px;"
-                );
+    ui->label->setStyleSheet("font-size: 36px; font-weight: normal; margin: 0.5px; padding: 5px;");
     set28pxFont(ui->StartButton);
     set28pxFont(ui->ShowAllWorldsButton);
     set28pxFont(ui->AboutButton);
