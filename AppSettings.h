@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QFile>
+#include <QMessageBox>
 #include <QDebug>
 
 namespace Ui {

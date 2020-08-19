@@ -61,7 +61,7 @@ int AppSettings::getRightAnswersInARow()
 void AppSettings::readFromExistFile()
 {
     if (settings.isOpen()){
-        qDebug()<<"file is already open!"<<endl;
+        QMessageBox::information(0, "Ошибка", "Внутренняя ошибка. Файл со словами уже открыт");
         settings.close();
     }
     if (settings.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -74,7 +74,7 @@ void AppSettings::readFromExistFile()
 void AppSettings::createDefaultFile()
 {
     if (settings.isOpen()){
-        qDebug()<<"file is already open!"<<endl;
+        QMessageBox::information(0, "Ошибка", "Внутренняя ошибка. Файл со словами уже открыт");
         settings.close();
     }
     if (settings.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){

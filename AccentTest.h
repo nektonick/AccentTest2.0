@@ -6,7 +6,7 @@
 #include <QSignalMapper>
 #include <QLabel>
 #include <WordsVector.h>
-#include <ButtonsWithLetter.h>
+#include <WordLettersButtonsVector.h>
 #include <AppSettings.h>
 
 namespace Ui {
@@ -24,7 +24,7 @@ private:
     Ui::AccentTest *ui;
     WordsVector wordsVector;
     WordWithAccentAndStatistic currentWord;
-    ButtonsWithLetter buttons;
+    WordLettersButtonsVector buttons;
     QLabel wrongAnswerLabel;
     QString inputAccent;
     int currentWordNum;

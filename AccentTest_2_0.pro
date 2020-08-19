@@ -21,8 +21,8 @@ SOURCES += \
     AddNewWordDialog.cpp \
     AddNewWordDialogAlternative.cpp \
     AppSettings.cpp \
-    ButtonsWithLetter.cpp \
     DeleteWordsWarning.cpp \
+    WordLettersButtonsVector.cpp \
     WordWithAccentAndStatistic.cpp \
     WordsTable.cpp \
     WordsVector.cpp \
@@ -36,9 +36,9 @@ HEADERS += \
     AddNewWordDialog.h \
     AddNewWordDialogAlternative.h \
     AppSettings.h \
-    ButtonsWithLetter.h \
     DeleteWordsWarning.h \
     MainMenu.h \
+    WordLettersButtonsVector.h \
     WordWithAccentAndStatistic.h \
     WordsTable.h \
     WordsVector.h \

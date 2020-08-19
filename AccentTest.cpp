@@ -22,15 +22,15 @@ void AccentTest::showRandomWord(){
         currentWord = wordsVector[currentWordNum];
         buttons.generateButtonsFor(currentWord);
         int numberOfReadedVowels = 0;
-        for (int i=0; i<buttons.size(); ++i){
-            ui->buttonsLayout->addWidget(&buttons[i]);
-            if (WordWithAccentAndStatistic::isVowel(buttons[i].text()[0])){
+        for (unsigned int i = 0; i < buttons.size(); ++i){
+            ui->buttonsLayout->addWidget(buttons[i]);
+            if (WordWithAccentAndStatistic::isVowel(buttons[i]->text()[0])){
                 numberOfReadedVowels++;
                 if (numberOfReadedVowels == currentWord.rightAccent){
-                    connect(&buttons[i], SIGNAL(clicked()), this, SLOT(rightVowelClick()));
+                    connect(buttons[i], SIGNAL(clicked()), this, SLOT(rightVowelClick()));
                 }
                 else{
-                    connect(&buttons[i], SIGNAL(clicked()), this, SLOT(wrongVowelClick()));
+                    connect(buttons[i], SIGNAL(clicked()), this, SLOT(wrongVowelClick()));
                 }
             }
         }
@@ -98,10 +98,10 @@ void AccentTest::showUserWrongAnswer()
 
 void AccentTest::showRightAnswer()
 {
-    buttons.generateButtonWithRightAnswer(currentWord);
-    setGreenButtonStyleSheet(buttons[0]); //кнопка только одна, имеет индекс [0]
-    ui->buttonsLayout->addWidget(&buttons[0]);
-    connect(&buttons[0], SIGNAL(clicked()), this, SLOT(nextWordClick()));
+    buttons.generateButtonWithRightAnswerFor(currentWord);
+    setGreenButtonStyleSheet(*buttons[0]); //кнопка только одна, имеет индекс [0]
+    ui->buttonsLayout->addWidget(buttons[0]);
+    connect(buttons[0], SIGNAL(clicked()), this, SLOT(nextWordClick()));
 }
 
 void AccentTest::saveWordsStatistic()

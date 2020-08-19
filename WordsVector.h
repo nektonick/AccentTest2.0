@@ -4,6 +4,7 @@
 #include <WordWithAccentAndStatistic.h>
 #include <QDebug>
 #include <QFile>
+#include <QMessageBox>
 
 class WordsVector : public std::vector<WordWithAccentAndStatistic>
 {

@@ -5,7 +5,7 @@ WordsVector::WordsVector()
 {
     wordsFile.setFileName(fileName);
     if (wordsFile.isOpen()){
-        qDebug()<<"file is already open"<<endl;
+        QMessageBox::information(0, "Ошибка", "Внутренняя ошибка. Файл со словами уже открыт");
         wordsFile.close();
     }
     getWordsByReadingFromFileOrCreatingDefaultFile();
@@ -30,7 +30,7 @@ void WordsVector::getWordsByReadingFromFileOrCreatingDefaultFile()
 void WordsVector::readWordsFromFile()
 {
     if (wordsFile.isOpen()){
-        qDebug()<<"file is already open"<<endl;
+        QMessageBox::information(0, "Ошибка", "Внутренняя ошибка. Файл со словами уже открыт");
         wordsFile.close();
     }
     if (wordsFile.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -54,7 +54,7 @@ void WordsVector::readWordsFromFile()
 void WordsVector::createDefaultWordsFileIfItNotExist()
 {
     if (wordsFile.isOpen()){
-        qDebug()<<"file is already open"<<endl;
+        QMessageBox::information(0, "Ошибка", "Внутренняя ошибка. Файл со словами уже открыт");
         wordsFile.close();
     }
     if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
@@ -67,7 +67,7 @@ void WordsVector::createDefaultWordsFileIfItNotExist()
 void WordsVector::saveWords()
 {
     if (wordsFile.isOpen()){
-        qDebug()<<"file is already open"<<endl;
+        QMessageBox::information(0, "Ошибка", "Внутренняя ошибка. Файл со словами уже открыт");
         wordsFile.close();
     }
     if (wordsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
